@@ -17,6 +17,9 @@ import * as Screens from "app/screens"
 import Config from "../config"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "app/theme"
+import { MainNavigator } from "./main-navigator"
+import { Speaker } from "../models/speaker"
+import { useStores } from "app/models"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -32,9 +35,14 @@ import { colors } from "app/theme"
  *   https://reactnavigation.org/docs/typescript/#organizing-types
  */
 export type AppStackParamList = {
-  Welcome: undefined
-  // 🔥 Your screens go here
-  // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
+  Welcome: undefined,
+  Login: {
+    Next: string
+  },
+  Author: {
+    Speaker: Speaker,
+  },
+  Tabs: undefined
 }
 
 /**
@@ -56,8 +64,16 @@ const AppStack = observer(function AppStack() {
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
     >
-          <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
-      {/** 🔥 Your screens go here */}
+      <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} options={{headerShown: false}} />
+      <Stack.Screen name="Login" component={Screens.LoginScreen} options={{headerShown: true, headerTitle: 'Log In', headerStyle: {backgroundColor: colors.palette.endeavour }, headerTintColor: colors.palette.white}} />
+      <Stack.Screen name="Author" component={Screens.SpeakerDetailScreen} options={{ headerShown: true, headerTitle: 'About the Author', headerStyle: {backgroundColor: colors.palette.endeavour }, headerTintColor: colors.palette.white }} />
+      <Stack.Screen
+        name="Tabs"
+        component={MainNavigator}
+        options={{
+          headerShown: false,
+        }}
+        />
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
   )
@@ -70,6 +86,26 @@ export const AppNavigator = observer(function AppNavigator(props: NavigationProp
   const colorScheme = useColorScheme()
 
   useBackButtonHandler((routeName) => exitRoutes.includes(routeName))
+
+  // const {
+  //   cartStore: { syncCartAddition },
+  //   speakerStore: { fetchSpeakers },
+  //   recordingStore: { fetchRecordings },
+  //   scheduleStore: { fetchSchedule, schedule },
+  // } = useStores()
+
+  // const fetchContent = async () => {
+  //   await fetchSpeakers()
+  //   await fetchRecordings()
+  //   await fetchSchedule()
+  //   syncCartAddition()
+  // }
+
+  // React.useEffect(() => {
+  //   if (!schedule || schedule.length === 0) {
+  //     fetchContent()
+  //   }
+  // }, [schedule])
 
   return (
     <NavigationContainer

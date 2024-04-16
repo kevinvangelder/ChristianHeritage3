@@ -1,38 +1,82 @@
-/**
- * These types indicate the shape of the data you expect to receive from your
- * API endpoint, assuming it's a JSON object like we have.
- */
-export interface EpisodeItem {
-  title: string
-  pubDate: string
-  link: string
-  guid: string
-  author: string
-  thumbnail: string
-  description: string
-  content: string
-  enclosure: {
-    link: string
-    type: string
-    length: number
-    duration: number
-    rating: { scheme: string; value: string }
-  }
-  categories: string[]
-}
+import { GeneralApiProblem } from "./api-problem"
+import { RecordingSnapshot } from "../../models/recording"
+import { ScheduleBlockSnapshot } from "../../models/schedule-block"
+import { CartSnapshot } from "../../models/cart"
+import { SpeakerSnapshot } from "../../models/speaker"
 
-export interface ApiFeedResponse {
-  status: string
-  feed: {
-    url: string
-    title: string
-    link: string
-    author: string
-    description: string
-    image: string
-  }
-  items: EpisodeItem[]
-}
+export type GetRecordingsResult =
+  | { kind: "ok"; recordings: RecordingSnapshot[] }
+  | GeneralApiProblem
+export type GetScheduleResult =
+  | { kind: "ok"; schedule: ScheduleBlockSnapshot[] }
+  | GeneralApiProblem
+export type GetSpeakersResult = 
+  | { kind: "ok"; Speakers: SpeakerSnapshot[] }
+  | GeneralApiProblem
+export type CheckEmailResult = { kind: "ok"; emailExists: boolean } | GeneralApiProblem
+export type SignUpResult =
+  | {
+      kind: "ok"
+      token: string
+      firstName: string
+      lastName: string
+      phone: string
+      address1: string
+      address2: string
+      city: string
+      state: string
+      zip: string
+      cart: CartSnapshot
+      coupons: any
+      purchaseHistory: any
+      error: string,
+    }
+  | GeneralApiProblem
+export type SignInResult =
+  | {
+      kind: "ok"
+      token: string
+      firstName: string
+      lastName: string
+      phone: string
+      address1: string
+      address2: string
+      city: string
+      state: string
+      zip: string
+      cart: CartSnapshot
+      coupons: any
+      purchaseHistory: any
+      error: string,
+    }
+  | GeneralApiProblem
+export type ReauthenticateResult =
+  | {
+      kind: "ok"
+      token: string
+      firstName: string
+      lastName: string
+      phone: string
+      address1: string
+      address2: string
+      city: string
+      state: string
+      zip: string
+      cart: CartSnapshot
+      coupons: any
+      purchaseHistory: any
+      error: string | null,
+    }
+  | GeneralApiProblem
+export type UpdateUserResult = { kind: "ok"; success: string; error: string } | GeneralApiProblem
+export type CheckCartResult =
+  | { kind: "ok"; cart: CartSnapshot; coupons: any; error: string }
+  | GeneralApiProblem
+export type RemoveFromCartResult =
+  | { kind: "ok"; cart: CartSnapshot; error: string }
+  | GeneralApiProblem
+export type CheckoutResult = { kind: "ok"; result: any } | GeneralApiProblem
+
 
 /**
  * The options used to configure apisauce.

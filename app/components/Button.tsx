@@ -212,22 +212,67 @@ const $viewPresets = {
     $baseViewStyle,
     { backgroundColor: colors.palette.neutral800 },
   ] as StyleProp<ViewStyle>,
+
+  primary: [
+    $baseViewStyle,
+    { backgroundColor: colors.palette.bahamaBlue },
+  ] as StyleProp<ViewStyle>,
+  primarySmall: [
+    $baseViewStyle,
+    { backgroundColor: colors.palette.bahamaBlue, paddingVertical: spacing.xxs, paddingHorizontal: spacing.xxs, minHeight: 24 },
+  ] as StyleProp<ViewStyle>,
+  delete: [
+    $baseViewStyle,
+    { backgroundColor: colors.palette.angry },
+  ] as StyleProp<ViewStyle>,
+  deleteSmall: [
+    $baseViewStyle,
+    {
+      backgroundColor: colors.palette.angry,
+      paddingVertical: spacing.xxs,
+      paddingHorizontal: spacing.xxs,
+      minHeight: 24,
+    },
+  ] as StyleProp<ViewStyle>,
+  link: [
+    $baseViewStyle,
+    {
+      paddingHorizontal: 0,
+      paddingVertical: 0,
+      alignItems: "flex-start",
+    },
+  ] as StyleProp<ViewStyle>,
 }
 
 const $textPresets: Record<Presets, StyleProp<TextStyle>> = {
   default: $baseTextStyle,
   filled: $baseTextStyle,
   reversed: [$baseTextStyle, { color: colors.palette.neutral100 }],
+  primary: [$baseTextStyle, { color: colors.palette.white }],
+  primarySmall: [$baseTextStyle, { color: colors.palette.white }],
+  delete: [$baseTextStyle, { color: colors.palette.white }],
+  deleteSmall: [$baseTextStyle, { color: colors.palette.white }],
+  link: [$baseTextStyle, { color: colors.palette.bahamaBlue }],
 }
 
 const $pressedViewPresets: Record<Presets, StyleProp<ViewStyle>> = {
   default: { backgroundColor: colors.palette.neutral200 },
   filled: { backgroundColor: colors.palette.neutral400 },
   reversed: { backgroundColor: colors.palette.neutral700 },
+  primary: { backgroundColor: colors.palette.bayoux },
+  primarySmall: { backgroundColor: colors.palette.bayoux },
+  delete: { backgroundColor: colors.palette.angry100 },
+  deleteSmall: { backgroundColor: colors.palette.angry100 },
+  link: { backgroundColor: "transparent" },
 }
 
 const $pressedTextPresets: Record<Presets, StyleProp<TextStyle>> = {
   default: { opacity: 0.9 },
   filled: { opacity: 0.9 },
   reversed: { opacity: 0.9 },
+  primary: { opacity: 0.9 },
+  primarySmall: { opacity: 0.9 },
+  delete: { opacity: 0.9 },
+  deleteSmall: { opacity: 0.9 },
+  link: { opacity: 0.9 },
 }

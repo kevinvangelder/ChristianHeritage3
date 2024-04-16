@@ -35,6 +35,23 @@ const palette = {
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
+  black: "#1d1d1d",
+  white: "#ffffff",
+  offWhite: "#e6e6e6",
+  orange: "#FBA928",
+  orangeDarker: "#EB9918",
+  darkGrey: "#333333",
+  mediumGrey: "#636466",
+  lightGrey: "#939AA4",
+  lighterGrey: "#CDD4DA",
+  angry: "#dd3333",
+  bayoux: "#4C6772",
+  bayoux40: "#4C677240",
+  bahamaBlue: "#006699",
+  endeavour: "#0061AE",
+  endeavour40: "#0061AE40",
+  shipCove: "#778AB8",
+  matisse: "#215AA8",
 } as const
 
 export const colors = {
@@ -64,6 +81,8 @@ export const colors = {
    * The default border color.
    */
   border: palette.neutral400,
+  line: palette.offWhite,
+  dim: palette.mediumGrey,
   /**
    * The main tinting color.
    */

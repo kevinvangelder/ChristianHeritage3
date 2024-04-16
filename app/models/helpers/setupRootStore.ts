@@ -47,5 +47,10 @@ export async function setupRootStore(rootStore: RootStore) {
     _disposer = undefined
   }
 
+  await rootStore.speakerStore.fetchSpeakers()
+  await rootStore.recordingStore.fetchRecordings()
+  await rootStore.scheduleStore.fetchSchedule()
+  rootStore.cartStore.syncCartAddition()
+
   return { rootStore, restoredState, unsubscribe }
 }
