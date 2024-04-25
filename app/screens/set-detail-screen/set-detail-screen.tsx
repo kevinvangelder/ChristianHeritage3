@@ -9,26 +9,27 @@ import { observer } from "mobx-react-lite"
 
 const ROOT: ViewStyle = {
   flex: 1,
-  paddingHorizontal: spacing[4],
-  paddingBottom: spacing[3],
+  paddingHorizontal: spacing.md,
+  paddingBottom: spacing.sm,
 }
 const HEADING: TextStyle = {
   fontSize: 18,
   fontWeight: "bold",
-  paddingBottom: spacing[2],
+  paddingBottom: spacing.xs,
 }
 const PARAGRAPH: TextStyle = {
-  paddingBottom: spacing[2],
+  paddingBottom: spacing.xs,
   color: 'black',
 }
 const BOLD: TextStyle = {
   fontWeight: "bold",
-  paddingBottom: spacing[2],
+  paddingBottom: spacing.xs,
 }
 const SESSION_TITLE: TextStyle = {
   fontSize: 12,
-  paddingBottom: spacing[1],
-  marginLeft: spacing[2]
+  paddingBottom: spacing.xs,
+  marginLeft: spacing.xs,
+  lineHeight: 14,
 }
 
 export const SetDetailScreen = observer(() => {
@@ -84,14 +85,9 @@ export const SetDetailScreen = observer(() => {
   )
   const isDVD = set.TITLE.includes("DVD")
   return (
-    <Screen preset="fixed" unsafe>
-      <ScrollView
-        style={ROOT}
-        contentContainerStyle={{ width: "100%", paddingVertical: spacing[3] }}
-        keyboardShouldPersistTaps="handled"
-      >
+    <Screen preset="scroll" contentContainerStyle={{ width: "100%", padding: spacing.sm }} statusBarStyle="light">
         <Text style={HEADING}>{set.TITLE}</Text>
-        {/* <Text style={PARAGRAPH}>{cleanedDescription}</Text> */}
+        <Text style={PARAGRAPH}>{cleanedDescription}</Text>
         {isDVD && (
           <Text style={BOLD}>
             Please Ensure you provide complete Postal mailing address in your account to prevent
@@ -99,14 +95,13 @@ export const SetDetailScreen = observer(() => {
           </Text>
         )}
         {renderCartButton(recording)}
-        <Text style={{ marginVertical: spacing[2]}}>Included Sessions:</Text>
+        <Text style={{ marginVertical: spacing.xs}}>Included Sessions:</Text>
         {set.SESSIONS.map(session => (
           <Text key={session.RID} style={SESSION_TITLE}>
             - {session.TITLE}
           </Text>
         ))}
         {renderCartButton(recording)}
-      </ScrollView>
     </Screen>
   )
 })

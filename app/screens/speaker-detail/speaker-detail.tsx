@@ -32,7 +32,7 @@ export const SpeakerDetailScreen = function SpeakerDetailScreen() {
   const route = useRoute()
   const { speaker } = route.params as ScheduleParamList["speakerDetail"]
   return (
-    <Screen preset="scroll" statusBarStyle="light" style={ROOT} contentContainerStyle={{paddingBottom: spacing.xl}}>
+    <Screen preset="scroll" statusBarStyle="light" style={ROOT} contentContainerStyle={{paddingBottom: spacing.xl}} safeAreaEdges={["bottom"]}>
       <View style={{ flex: 1, flexDirection: "column"}}>
         {speaker.SID === 99999999 ? (
           <Image source={require("./speaker-images/KevinVanGelder.jpg")} style={IMAGE} />
@@ -56,7 +56,7 @@ export const SpeakerDetailScreen = function SpeakerDetailScreen() {
             )}
           </View>
         )}
-        <Text preset="default">{speaker.BIO}</Text>
+        <Text preset="default" style={{marginBottom: spacing.md}}>{speaker.BIO}</Text>
       </View>
     </Screen>
   )
